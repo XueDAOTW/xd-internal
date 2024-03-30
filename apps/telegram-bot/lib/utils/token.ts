@@ -24,7 +24,7 @@ import { wagmiAbi } from "./abi";
 import fs from "fs";
 
 const deployments = JSON.parse(
-  fs.readFileSync("./abi/deployments.json", "utf8"),
+  fs.readFileSync(`${__dirname}/../../abi/deployments.json`, "utf8")
 );
 
 export async function hasNFT(ethAddress: string) {
@@ -34,7 +34,7 @@ export async function hasNFT(ethAddress: string) {
       abi: wagmiAbi,
       functionName: "balanceOf",
       args: [ethAddress],
-    }),
+    })
   );
   console.log(`Balance of ${ethAddress} is ${balanceOf}`);
   return balanceOf > 0;
