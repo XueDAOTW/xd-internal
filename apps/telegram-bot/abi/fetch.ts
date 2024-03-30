@@ -8,7 +8,7 @@ interface ApiResponse {
 
 async function fetchAndSaveABI() {
   const deployments = JSON.parse(
-    fs.readFileSync("./abi/deployments.json", "utf8"),
+    fs.readFileSync(`${__dirname}/deployments.json`, "utf8")
   );
   const baseAddress = deployments.base.address;
   const explorer = deployments.base.explorer;
