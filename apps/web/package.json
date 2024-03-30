@@ -1,0 +1,52 @@
+{
+  "name": "@xd/web-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@xd/database": "*",
+    "@hookform/resolvers": "^3.1.0",
+    "@magic-sdk/admin": "^1.9.2",
+    "@rainbow-me/rainbowkit": "^0.8.1",
+    "@rainbow-me/rainbowkit-siwe-next-auth": "^0.1.9",
+    "clsx": "^1.2.1",
+    "daisyui": "^2.51.6",
+    "ethers": "^5.7.2",
+    "magic-sdk": "^17.1.3",
+    "next": "13.3.1",
+    "next-auth": "^4.22.1",
+    "next-s3-upload": "^0.3.0",
+    "next-themes": "^0.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-hot-toast": "^2.4.0",
+    "siwe": "^2.1.4",
+    "wagmi": "^0.11.5",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/node": "18.16.1",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "autoprefixer": "10.4.14",
+    "eslint": "8.39.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-next": "13.3.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-tailwindcss": "^3.11.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "postcss": "8.4.23",
+    "prettier": "^2.8.8",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4"
+  }
+}

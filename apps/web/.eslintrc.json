@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "airbnb-base",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false,
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "plugins": ["@typescript-eslint", "unused-imports", "tailwindcss"],
+      "extends": [
+        "plugin:tailwindcss/recommended",
+        "airbnb-typescript",
+        "next/core-web-vitals",
+        "plugin:prettier/recommended"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "consistent-return": "off", // Allow implicit return in arrow functions
+        "import/no-extraneous-dependencies": "off",
+        "react-hooks/exhaustive-deps": "off" // Incorrectly report needed dependency with Next.js router
+      }
+    }
+  ]
+}

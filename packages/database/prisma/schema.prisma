@@ -1,0 +1,132 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id String @id @default(cuid())
+
+  email            String  @unique
+  ethAddress       String  @unique
+  telegramUsername String  @unique
+  twitterUsername  String?
+
+  name           String?
+  image          String?
+  location       String?
+  hobbies        String?
+  currentCompany String?
+  currentRole    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  roles Role[] @relation("UserRole")
+  votes Vote[]
+  polls Poll[]
+}
+
+model Role {
+  id          String       @id @default(cuid())
+  name        String
+  permissions Permission[] @relation("RolePermission")
+  users       User[]       @relation("UserRole")
+}
+
+model Permission {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  roles       Role[]  @relation("RolePermission")
+}
+
+enum ProposalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELED
+}
+
+model Proposal {
+  id          String         @id @default(cuid())
+  ipId       Int            @unique
+  title       String
+  status      ProposalStatus @default(PENDING)
+  link        String?
+  description String?        @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  polls Poll[]
+}
+
+enum PollStatus {
+  NONE
+  OPEN
+  CLOSED
+  CANCELED
+}
+
+model Poll {
+  id         String     @id @default(cuid())
+  pollStatus PollStatus @default(NONE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id])
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  votes    Vote[]
+  messages PollTelegramMessage[]
+
+  @@index([proposalId])
+  @@index([createdById])
+}
+
+model PollTelegramMessage {
+  id        String  @id @default(cuid())
+  chatId    String?
+  messageId String
+
+  pollId String
+  poll   Poll   @relation(fields: [pollId], references: [id])
+
+  @@unique([chatId, messageId])
+  @@index([pollId])
+}
+
+enum VoteType {
+  YES
+  NO
+  ABSTAIN
+}
+
+model Vote {
+  id String @id @default(cuid())
+
+  voteType  VoteType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  pollId String
+  poll   Poll   @relation(fields: [pollId], references: [id])
+
+  @@index([userId])
+  @@index([pollId])
+}
