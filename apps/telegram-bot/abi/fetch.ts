@@ -1,4 +1,5 @@
 import fs from "fs";
+import deployments from "./deployments.json";
 
 interface ApiResponse {
   status: string;
@@ -7,9 +8,6 @@ interface ApiResponse {
 }
 
 async function fetchAndSaveABI() {
-  const deployments = JSON.parse(
-    fs.readFileSync(`${__dirname}/deployments.json`, "utf8")
-  );
   const baseAddress = deployments.base.address;
   const explorer = deployments.base.explorer;
   const apiKey = deployments.base["api-key"];
@@ -24,7 +22,7 @@ async function fetchAndSaveABI() {
       throw new Error(`Error in response data: ${data.message}`);
     }
     const formattedABI = JSON.stringify(JSON.parse(data.result), null, 2);
-    fs.writeFileSync("./abi/XueDAOCoreContributor.abi", formattedABI);
+    fs.writeFileSync(`${__dirname}/XueDAOCoreContributor.abi`, formattedABI);
     console.log("ABI saved successfully.");
   } catch (error) {
     console.error("Failed to fetch and save ABI:", error);
