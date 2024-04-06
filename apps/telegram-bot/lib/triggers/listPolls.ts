@@ -36,7 +36,7 @@ class ListPollsTrigger implements BotTrigger {
         loadingMessage.message_id,
       );
 
-      const pollStrings: string[] = polls.map((poll: any) => {
+      const pollStrings: string[] = polls.map((poll) => {
         return `<b>XIP ${poll.proposal.ipId} ${poll.proposal.title}</b> (${poll.pollStatus})\n/view_${poll.id}`;
       });
 

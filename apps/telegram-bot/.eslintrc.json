@@ -1,12 +1,15 @@
 {
   "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "prettier/prettier": [
       "error",
       {
         "singleQuote": false,
-        "endOfLine": "auto"
+        "endOfLine": "auto"        
       }
     ]
   },
@@ -14,9 +17,7 @@
     {
       "files": ["**/*.ts", "**/*.tsx"],
       "plugins": ["@typescript-eslint", "unused-imports"],
-      "extends": [
-        "plugin:prettier/recommended"
-      ],
+      "extends": ["plugin:prettier/recommended"],
       "parserOptions": {
         "project": "./tsconfig.json"
       },

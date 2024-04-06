@@ -12,7 +12,7 @@ export async function hasNFT(ethAddress: string) {
       abi: wagmiAbi,
       functionName: "balanceOf",
       args: [ethAddress],
-    })
+    }),
   );
   console.log(`Balance of ${ethAddress} is ${balanceOf}`);
   return balanceOf > 0;
