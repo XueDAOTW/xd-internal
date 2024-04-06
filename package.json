@@ -23,6 +23,5 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
-  "packageManager": "yarn@3.5.0"
+  "dependencies": {}
 }
