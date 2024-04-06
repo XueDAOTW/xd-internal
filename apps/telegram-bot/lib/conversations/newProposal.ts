@@ -74,18 +74,21 @@ class NewProposalConversation {
             reply_markup: cancelNewPollKeyboard,
           },
         );
-        proposalName = await conversation.form.text();
+        ctx = await conversation.waitFor("message:text");
+        proposalName = ctx.message?.text || "";
         await ctx.reply(
           "What is the goal of the proposal? (e.g. 'Add a membership program to XD to build community.')",
           {
             reply_markup: cancelNewPollKeyboard,
           },
         );
-        const description = await conversation.form.text();
+        ctx = await conversation.waitFor("message:text");
+        const description = ctx.message?.text || "";
         await ctx.reply("What is the link to the proposal?", {
           reply_markup: cancelNewPollKeyboard,
         });
-        const link = await conversation.form.text();
+        ctx = await conversation.waitFor("message:text");
+        const link = ctx.message?.text;
         loadingMessage = await ctx.reply(
           `Creating proposal and poll for XIP ${ipId} ${proposalName}...`,
         );
