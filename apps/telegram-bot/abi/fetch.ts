@@ -10,7 +10,7 @@ interface ApiResponse {
 async function fetchAndSaveABI() {
   const baseAddress = deployments.base.address;
   const explorer = deployments.base.explorer;
-  const apiKey = deployments.base["api-key"];
+  const apiKey = process.env.BASESCAN_API_KEY;
   const url = `${explorer}/api?module=contract&action=getabi&address=${baseAddress}&apikey=${apiKey}`;
   try {
     const response = await fetch(url);
